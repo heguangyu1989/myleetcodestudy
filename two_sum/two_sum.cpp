@@ -1,7 +1,3 @@
-// two_sum.cpp : Defines the entry point for the console application.
-//
-
-#include "stdafx.h"
 #include <iostream>
 #include <vector>
 #include <map>
@@ -82,7 +78,6 @@ int main()
 	res2 = twosum(nums, target);
 	printVector(res2);
 
-	getchar();
     return 0;
 }
 
