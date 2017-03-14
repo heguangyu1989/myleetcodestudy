@@ -1,28 +1,33 @@
-// longest_substring_without_repeating_characters.cpp : Defines the entry point for the console application.
-//
-
-#include "stdafx.h"
 #include <iostream>
 #include <string>
 #include <map>
+#include <algorithm>
 using namespace std;
+
 
 int lengthOfLongestSubstring(string s) 
 {
 	int length = 0;
 	int stringLength = s.length();
 	map<char, int> _map;
-	//length = stringLength;
+    int lastPos = -1;
 	for (int i = 0; i < stringLength; i++)
 	{
 		char c = s[i];
-		if (_map.find(c) != _map.end())
+		if (_map.find(c) == _map.end() && (i - 1) == lastPos)
 		{
+            lastPos = i;
 			_map[c] = i;
 		}
+        else
+        {
+            length = max(length, (int)_map.size());
+            _map.clear();
+            lastPos = i;
+            _map[c] = i;
+        }
 	}
-
-
+    length = max(length, (int)_map.size());
 	return length;
 }
 
@@ -43,7 +48,6 @@ int main()
 	l3 = lengthOfLongestSubstring(str3);
 	cout << "str3 length : " << l3 << endl;
 
-	getchar();
     return 0;
 }
 
